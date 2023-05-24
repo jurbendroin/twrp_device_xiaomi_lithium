@@ -19,6 +19,32 @@ Battery | Li-Po 4400mAh battery
 Display | 1080 x 2040 pixels, 6.4 inches (~362 ppi pixel density)
 Camera  | 16 MP, f/2.0, EIS (gyro), phase detection autofocus, dual-LED (dual tone) flash
 
-## Device picture
+## Compile
 
-![Xiaomi Mi Mix](https://xiaomi-mi.com/uploads/CatalogueImage/xiaomi-mi-mix-ceramic-black-18k-gold-01_14542_1477466272.jpg "Xiaomi Mi Mix in black")
+First checkout minimal twrp with omnirom tree:
+
+```
+repo init -u git://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp.git -b twrp-12.1
+repo sync
+```
+
+Then add these projects to .repo/manifest.xml:
+```
+<project path="device/xiaomi/lithium" name="jurbendroin/twrp_device_xiaomi_lithium" remote="github" revision="android-12.1" />
+```
+Finally execute these:
+```
+. build/envsetup.sh
+lunch twrp_ginkgo-eng
+export ALLOW_MISSING_DEPENDENCIES=true # Only if you use minimal twrp tree.
+mka recoveryimage
+```
+To test it:
+```
+fastboot boot out/target/product/ginkgo/recovery.img
+```
+
+## Thanks
+
+- Thanks to https://github.com/lithium-4-4-project/twrp_device_xiaomi_lithium
+- Thanks to https://github.com/TeamWin/android_device_xiaomi_ginkgo
