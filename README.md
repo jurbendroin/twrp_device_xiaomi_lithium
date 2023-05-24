@@ -35,13 +35,13 @@ Then add these projects to .repo/manifest.xml:
 Finally execute these:
 ```
 . build/envsetup.sh
-lunch twrp_ginkgo-eng
+lunch twrp_lithium-eng
 export ALLOW_MISSING_DEPENDENCIES=true # Only if you use minimal twrp tree.
 mka recoveryimage
 ```
 To test it:
 ```
-fastboot boot out/target/product/ginkgo/recovery.img
+fastboot boot out/target/product/lithium/recovery.img
 ```
 
 ## Thanks
